@@ -1,0 +1,49 @@
+//- Variables
+-var titulos = ["Titulo Principal", "Subtitulo 1", "Subtitulo 2", "Subtitulo 3"]
+-var enlaces = ["Acerca", "Noticias", "Contacto"]
+
+//- Mixins
+mixin caja(imagen, titulo, contenido)
+    .caja
+        .caja__imagen: img(src="./images/"+imagen, alt="alt")
+        .caja__contenido
+            h3=titulo
+            p=contenido
+            a.boton Leer Mas
+
+mixin menu(titulo)
+    h1=titulo
+    ul
+        each enlace in enlaces
+            li=enlace
+//- Html
+doctype html
+html
+    head 
+        meta(http-equiv="Content-Type", content="text/html;charset=UTF-8")
+        link(rel="stylesheet", href="./css/style.css")
+    body
+        header 
+            h1 Landing Page
+            if usuario
+                a Hola #{usuario}
+            else
+                a.boton Registro 
+        section.intro
+            .intro__imagen: img(src="./images/imagen.png", alt="alt")
+            .intro__contenido
+                h2= titulos[0]
+                p.
+                    Lorem ipsum dolor sit amet consectetur adipisicing elit. 
+                    Eaque tempore quia quam nihil distinctio at excepturi sint, 
+                    vitae culpa, reprehenderit, veritatis neque consequatur. 
+                    Aspernatur, autem?
+                a.boton Leer Mas
+        main.contenido 
+            +caja("imagen.png", titulos[1], "Lorem ipsum dolor sit amet")
+            +caja("imagen.png", titulos[2], "Lorem ipsum dolor sit amet")
+            +caja("imagen.png", titulos[3], "Lorem ipsum dolor sit amet")
+        footer 
+            +menu("Landing Page")
+            
+
